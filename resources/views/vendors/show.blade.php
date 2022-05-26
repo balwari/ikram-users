@@ -18,7 +18,7 @@
             <div class="col-md-4">
             </div>
             <div class="col-md-4">
-                <h2 style="text-align:center;">Users</h2>
+                <h2 style="text-align:center;">Vendors</h2>
             </div>
             <div class="col-md-4">
                 <div class="text-right">
@@ -49,36 +49,36 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($users as $key => $user)
+                @foreach($vendors as $key => $vendor)
                 <tr>
-                    <td>{{ $users->firstItem() + $key }}</th>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td><img src="{{ $user->photo }}" height="50px" width="50px" alt="Image error"></td>
-                    <td>{{ $user->phone }}</td>
-                    <td>{{ $user->country }}</td>
-                    <td>{{ $user->state }}</td>
-                    <td>{{ $user->city }}</td>
-                    <td>{{ $user->pincode }}</td>
-                    @if($user->status == 1)
+                    <td>{{ $vendors->firstItem() + $key }}</th>
+                    <td>{{ $vendor->name }}</td>
+                    <td>{{ $vendor->email }}</td>
+                    <td><img src="{{ $vendor->photo }}" height="50px" width="50px" alt="Image error"></td>
+                    <td>{{ $vendor->phone }}</td>
+                    <td>{{ $vendor->country }}</td>
+                    <td>{{ $vendor->state }}</td>
+                    <td>{{ $vendor->city }}</td>
+                    <td>{{ $vendor->pincode }}</td>
+                    @if($vendor->status == 1)
                     <td>Active</td>
                     @else
                     <td>Inactive</td>
                     @endif
                     <td>
                         <div class="btn-group btn-group-sm" role="group" aria-label="Option">
-                            <a href="/show_update_user/{{ $user->id }}">
+                            <a href="/show_update_user/{{ $vendor->id }}">
                                 <button type="button" class="btn btn-success mr-3">
                                     Update
                                 </button>
                             </a>
                             @if(Auth::user()->status == 1 && Auth::user()->is_admin == 1)
-                            <a href="/toggle_user/{{ $user->id }}">
+                            <a href="/toggle_user/{{ $vendor->id }}">
                                 <button type="button" class="btn btn-warning mr-3">
                                     Activate/Deactivate
                                 </button>
                             </a>
-                            <a href="/delete_user/{{ $user->id }}">
+                            <a href="/delete_user/{{ $vendor->id }}">
                                 <button type="button" class="btn btn-danger">
                                     Delete
                                 </button>
@@ -96,7 +96,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        {{ $users->links() }}
+                        {{ $vendors->links() }}
                     </div>
                 </div>
             </div>

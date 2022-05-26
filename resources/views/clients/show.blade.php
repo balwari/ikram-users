@@ -18,7 +18,7 @@
             <div class="col-md-4">
             </div>
             <div class="col-md-4">
-                <h2 style="text-align:center;">Users</h2>
+                <h2 style="text-align:center;">Clients</h2>
             </div>
             <div class="col-md-4">
                 <div class="text-right">
@@ -49,36 +49,36 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($users as $key => $user)
+                @foreach($clients as $key => $client)
                 <tr>
-                    <td>{{ $users->firstItem() + $key }}</th>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td><img src="{{ $user->photo }}" height="50px" width="50px" alt="Image error"></td>
-                    <td>{{ $user->phone }}</td>
-                    <td>{{ $user->country }}</td>
-                    <td>{{ $user->state }}</td>
-                    <td>{{ $user->city }}</td>
-                    <td>{{ $user->pincode }}</td>
-                    @if($user->status == 1)
+                    <td>{{ $clients->firstItem() + $key }}</th>
+                    <td>{{ $client->name }}</td>
+                    <td>{{ $client->email }}</td>
+                    <td><img src="{{ $client->photo }}" height="50px" width="50px" alt="Image error"></td>
+                    <td>{{ $client->phone }}</td>
+                    <td>{{ $client->country }}</td>
+                    <td>{{ $client->state }}</td>
+                    <td>{{ $client->city }}</td>
+                    <td>{{ $client->pincode }}</td>
+                    @if($client->status == 1)
                     <td>Active</td>
                     @else
                     <td>Inactive</td>
                     @endif
                     <td>
                         <div class="btn-group btn-group-sm" role="group" aria-label="Option">
-                            <a href="/show_update_user/{{ $user->id }}">
+                            <a href="/show_update_user/{{ $client->id }}">
                                 <button type="button" class="btn btn-success mr-3">
                                     Update
                                 </button>
                             </a>
                             @if(Auth::user()->status == 1 && Auth::user()->is_admin == 1)
-                            <a href="/toggle_user/{{ $user->id }}">
+                            <a href="/toggle_user/{{ $client->id }}">
                                 <button type="button" class="btn btn-warning mr-3">
                                     Activate/Deactivate
                                 </button>
                             </a>
-                            <a href="/delete_user/{{ $user->id }}">
+                            <a href="/delete_user/{{ $client->id }}">
                                 <button type="button" class="btn btn-danger">
                                     Delete
                                 </button>
@@ -96,7 +96,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        {{ $users->links() }}
+                        {{ $clients->links() }}
                     </div>
                 </div>
             </div>

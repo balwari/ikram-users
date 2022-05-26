@@ -64,17 +64,17 @@ class RegisterController extends Controller
      */
     function register(Request $request)
     {
-        // return "ikram";
+        // return "Balwari Ikram";
         $rules = [
-            'name' => 'required|string|min:3|max:25',
+            'name' => 'required|string|min:3|max:50',
             'email' => 'required|email|unique:users,email',
             'phone' => 'required|string',
-            'country' => 'required|string|min:3|max:30',
-            'state' => 'required|string|min:2|max:30',
-            'city' => 'required|string|min:2|max:30',
+            'country' => 'required|string|min:3|max:50',
+            'state' => 'required|string|min:2|max:50',
+            'city' => 'required|string|min:2|max:50',
             'pincode' => 'required|integer',
-            'password' => 'string|min:5|max:20|required_with:confirm_password|same:confirm_password',
-            'confirm_password' => 'required|string|min:5|max:20',
+            'password' => 'string|min:5|max:50|required_with:confirm_password|same:confirm_password',
+            'confirm_password' => 'required|string|min:5|max:50',
             'photo' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
 
@@ -85,12 +85,12 @@ class RegisterController extends Controller
 
         $user_details =  $this->validate($request, $rules, $customMessages);
         $user_details['password'] = bcrypt($user_details['password']);
-        $user_details['role'] = 'user';
-        $user_details['status'] = true;
+        $user_details['is_admin'] = 0;
+        $user_details['status'] = 1;
         // var_dump($request->photo);
         $imageName = time().'.'.$request->photo->extension();
              
-        $upload = $request->photo->move(public_path(), $imageName);
+        $upload = $request->photo->move(public_path('profile_photos'), $imageName);
         
         if(!$upload){
             return redirect()->back()->with('err', 'Something went wrong in Uploading Image');
@@ -101,8 +101,8 @@ class RegisterController extends Controller
         $create = User::create($user_details);
 
         if(!$create){
-            return redirect()->back()->with('err', 'Something went wrong in Registration');
+            return redirect()->back()->with('err', 'Something went wrong in User creation');
         }
-        return redirect()->back()->with('message', 'Successfully Registered');
+        return redirect()->back()->with('message', 'Successfully Created User');
     }
 }

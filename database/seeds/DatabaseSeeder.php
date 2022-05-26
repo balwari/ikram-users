@@ -22,9 +22,11 @@ class DatabaseSeeder extends Seeder
             'pincode' => 518001,
             'password' => bcrypt(12345),
             'confirm_password' => bcrypt(12345),
-            'role' => 'admin',
-            'status' => true
+            'is_admin' => 1,
+            'status' => 1
         ]);
+        // factory(App\User::class, 10)->create();
+
         // $this->call(UsersTableSeeder::class);
     }
 }
