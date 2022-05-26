@@ -13,7 +13,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'AdminController@check');
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Auth::routes();
 
@@ -27,16 +29,10 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register');
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/show_clients', 'ClientController@show_clients'); 
-    Route::get('/show_create_client', 'ClientController@show_create_client'); 
-    Route::post('/create_client', 'ClientController@create_client'); 
-    Route::get('/show_users', 'AdminController@show_users');
-    Route::get('/show_create_user', 'AdminController@show_create_user'); 
-    Route::post('/create_user', 'AdminController@create_user'); 
-    Route::get('/show_update_user/{id}', 'AdminController@show_update_user');
-    Route::post('/update_user/{id}', 'AdminController@update_user');
-    Route::get('/toggle_user/{id}', 'AdminController@toggle_user');
-    Route::get('/delete_user/{id}', 'AdminController@delete_user');
-    Route::get('/show_vendors', 'VendorController@show_vendors'); 
-    Route::get('/show_projects', 'ProjectController@show_projects'); 
+    Route::get('/show', 'UserController@show')->name('show');
+    Route::post('/create', 'UserController@create')->name('create');  
+    Route::get('/updateproduct/{id}', 'UserController@update_user')->name('updateuser');
+    Route::post('/update/{id}', 'UserController@update')->name('update');
+    Route::get('/deactivate/{id}', 'UserController@deactivate')->name('deactivate');
+    Route::get('/delete/{id}', 'UserController@delete')->name('delete');    
 });

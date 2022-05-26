@@ -15,13 +15,10 @@ composer install
 
 php artisan serve
 
-create database with name mendu
+create database with name aexonic
 
 php artisan key:generate
 
 php artisan db:seed
 
 php artisan migrate
-
-php artisan key:generate
-
